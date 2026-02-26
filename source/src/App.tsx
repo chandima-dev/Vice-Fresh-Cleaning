@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TopBar } from './Layout/TopBar'
 import { Navbar } from './Layout/Navbar'
 import { HeroSlider } from './Layout/HeroSlider'

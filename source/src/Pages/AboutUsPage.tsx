@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { Users, Leaf, ShieldCheck, ArrowLeft, CheckCircle2 } from 'lucide-react'
 interface AboutUsPageProps {

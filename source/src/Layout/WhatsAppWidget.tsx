@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send } from 'lucide-react'
 export function WhatsAppWidget() {
