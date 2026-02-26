@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 import { Users, Leaf, ShieldCheck, ArrowLeft, CheckCircle2 } from 'lucide-react'
+
 interface AboutUsPageProps {
   onNavigate: (page: 'home') => void
 }
+
 export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white pt-20 overflow-x-hidden">
       {/* Hero Header */}
       <div className="bg-slate-900 text-white py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -34,6 +36,7 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+          {/* Left Content */}
           <motion.div
             initial={{
               opacity: 0,
@@ -83,10 +86,11 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
             </div>
           </motion.div>
 
+          {/* Right Image */}
           <motion.div
             initial={{
               opacity: 0,
-              x: 50,
+              x: 50, // slide from right to left
             }}
             whileInView={{
               opacity: 1,
@@ -98,15 +102,17 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
             transition={{
               duration: 0.6,
             }}
-            className="relative"
+            className="relative w-full"
           >
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
+            <div className="rounded-2xl overflow-hidden shadow-2xl w-full">
               <img
                 src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
                 alt="Cleaning team at work"
                 className="w-full h-full object-cover"
               />
             </div>
+
+            {/* Overlay badge only on md+ */}
             <div className="absolute -bottom-6 -left-6 bg-blue-600 text-white p-8 rounded-xl shadow-xl hidden md:block">
               <p className="text-4xl font-bold mb-1">5+</p>
               <p className="text-sm font-medium opacity-90">
