@@ -9,7 +9,7 @@ import { WhatsAppWidget } from './Layout/WhatsAppWidget'
 import { ServiceDetail } from './Pages/ServicesDetail'
 import { AboutUsPage } from './Pages/AboutUsPage'
 import { ContactPage } from './Pages/ContactPage'
-import { ReviewsSlider } from './Layout/ReviewsSlider.tsx'
+// import { ReviewsSlider } from './Layout/ReviewsSlider.tsx'
 
 
 type Page = 'home' | 'services' | 'about' | 'contact'
@@ -30,7 +30,7 @@ function App() {
             <HeroSlider />
             <Services onViewAll={() => handleNavigate('services')} />
             <WhyChooseUs />
-            <ReviewsSlider />
+            {/* <ReviewsSlider /> */}
           </>
         )
       case 'services':
