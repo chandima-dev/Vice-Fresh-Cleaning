@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { Users, Leaf, ShieldCheck } from 'lucide-react'
 export function AboutUs() {

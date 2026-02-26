@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { DollarSign, GraduationCap, Wallet, Crown } from 'lucide-react'
 const features = [
