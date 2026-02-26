@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Phone, Mail, MapPin, Send, ArrowLeft, Clock } from 'lucide-react'
+
 interface ContactPageProps {
   onNavigate: (page: 'home') => void
 }
+
 export function ContactPage({ onNavigate }: ContactPageProps) {
   const [formState, setFormState] = useState({
     name: '',
@@ -12,6 +14,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
     message: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -20,6 +23,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
       [e.target.name]: e.target.value,
     })
   }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -36,8 +40,9 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
       setIsSubmitting(false)
     }, 1500)
   }
+
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white pt-20 overflow-x-hidden">
       {/* Hero Header */}
       <div className="bg-blue-600 text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -62,7 +67,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
           <motion.div
             initial={{
               opacity: 0,
-              x: -30,
+              x: -30, // left to right animation
             }}
             whileInView={{
               opacity: 1,
@@ -74,7 +79,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
             transition={{
               duration: 0.6,
             }}
-            className="space-y-8"
+            className="space-y-8 w-full" // full width prevents overflow
           >
             <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100 h-full">
               <h3 className="text-2xl font-bold text-slate-900 mb-8">
@@ -155,7 +160,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
           <motion.div
             initial={{
               opacity: 0,
-              x: 30,
+              x: 30, // right to left animation
             }}
             whileInView={{
               opacity: 1,
@@ -168,6 +173,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
               duration: 0.6,
               delay: 0.2,
             }}
+            className="w-full" // full width prevents overflow
           >
             <form
               onSubmit={handleSubmit}
@@ -256,7 +262,11 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:shadow-lg hover:-translate-y-1'}`}
+                  className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 ${
+                    isSubmitting
+                      ? 'opacity-75 cursor-not-allowed'
+                      : 'hover:shadow-lg hover:-translate-y-1'
+                  }`}
                 >
                   {isSubmitting ? (
                     'Sending...'
