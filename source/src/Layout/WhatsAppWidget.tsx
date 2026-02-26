@@ -39,7 +39,7 @@ export function WhatsAppWidget() {
             className="mb-4 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-100"
           >
             {/* Header */}
-            <div className="bg-[#25D366] p-4 flex justify-between items-center text-white">
+            <div className="bg-blue-500 p-4 flex justify-between items-center text-white">
               <div className="flex items-center gap-2">
                 <MessageCircle className="w-5 h-5 fill-current" />
                 <span className="font-semibold">Chat with us</span>
@@ -63,7 +63,7 @@ export function WhatsAppWidget() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type your message..."
-                className="w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-[#25D366] focus:border-transparent outline-none resize-none text-sm min-h-[100px]"
+                className="w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none text-sm min-h-[100px]"
               />
             </div>
 
@@ -72,7 +72,7 @@ export function WhatsAppWidget() {
               <button
                 onClick={handleSend}
                 disabled={!message.trim()}
-                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-medium py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span>Start Chat</span>
                 <Send className="w-4 h-4" />
@@ -91,12 +91,12 @@ export function WhatsAppWidget() {
         whileTap={{
           scale: 0.95,
         }}
-        className="bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-lg flex items-center justify-center relative group"
+        className="bg-blue-500 hover:bg-blue-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center relative group"
       >
         <MessageCircle className="w-8 h-8 fill-current" />
 
         {/* Pulse Effect */}
-        <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-75 animate-ping -z-10"></span>
+        <span className="absolute inset-0 rounded-full bg-blue-500 opacity-75 animate-ping -z-10"></span>
       </motion.button>
     </div>
   )
