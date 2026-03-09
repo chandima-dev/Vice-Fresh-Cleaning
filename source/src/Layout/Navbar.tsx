@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Menu, X, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 interface NavbarProps {
@@ -67,7 +67,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
             ))}
             <button
               onClick={() => handleNavClick('contact')}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full font-medium transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-2"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-medium transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />
               Book Now
@@ -126,7 +126,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
               <div className="pt-4">
                 <button
                   onClick={() => handleNavClick('contact')}
-                  className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-lg font-medium transition-colors shadow-sm"
+                  className="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 rounded-lg font-medium transition-colors shadow-sm"
                 >
                   Book Now
                 </button>

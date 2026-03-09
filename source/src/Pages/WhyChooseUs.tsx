@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { DollarSign, GraduationCap, Wallet, Crown } from 'lucide-react'
 const features = [
@@ -28,7 +29,7 @@ const features = [
 ]
 export function WhyChooseUs() {
   return (
-    <section className="py-20 bg-blue-50">
+    <section className="py-20 bg-emerald-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.h2
@@ -49,7 +50,7 @@ export function WhyChooseUs() {
             className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
           >
             Why Choose{' '}
-            <span className="text-blue-600">Vice Fresh Cleaning?</span>
+            <span className="text-emerald-600">Vice Fresh Cleaning?</span>
           </motion.h2>
           <motion.div
             initial={{
@@ -67,42 +68,47 @@ export function WhyChooseUs() {
               duration: 0.5,
               delay: 0.2,
             }}
-            className="h-1 bg-blue-600 mx-auto rounded-full"
+            className="h-1 bg-emerald-600 mx-auto rounded-full"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-              }}
-              className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center border border-blue-100"
-            >
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-600">
-                <feature.icon className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
+          {features.map((feature, index) => {
+            const isEmerald = index % 2 === 0
+            return (
+              <motion.div
+                key={index}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                }}
+                className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 text-center border border-emerald-100"
+              >
+                <div
+                  className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 ${isEmerald ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600'}`}
+                >
+                  <feature.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
