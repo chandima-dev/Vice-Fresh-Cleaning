@@ -22,7 +22,7 @@ function App() {
 
   // Scroll to top **whenever currentPage changes**
   useEffect(() => {
-    const navbarHeight = 90 // adjust if needed
+    // const navbarHeight = 90 // adjust if needed
     window.scrollTo({ top: 0, behavior: 'smooth' })
     // If you want to scroll **below navbar**, use:
     // window.scrollTo({ top: navbarHeight, behavior: 'smooth' })
