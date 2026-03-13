@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TopBar } from './Layout/TopBar'
 import { Navbar } from './Layout/Navbar'
 import { HeroSlider } from './Layout/HeroSlider'
@@ -9,8 +9,6 @@ import { WhatsAppWidget } from './Layout/WhatsAppWidget'
 import { ServiceDetail } from './Pages/ServicesDetail'
 import { AboutUsPage } from './Pages/AboutUsPage'
 import { ContactPage } from './Pages/ContactPage'
-// import { ReviewsSlider } from './Layout/ReviewsSlider.tsx'
-
 
 type Page = 'home' | 'services' | 'about' | 'contact'
 
@@ -19,8 +17,16 @@ function App() {
 
   const handleNavigate = (page: Page) => {
     setCurrentPage(page)
-    window.scrollTo(0, 0)
+    // No need to scroll here
   }
+
+  // Scroll to top **whenever currentPage changes**
+  useEffect(() => {
+    const navbarHeight = 90 // adjust if needed
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // If you want to scroll **below navbar**, use:
+    // window.scrollTo({ top: navbarHeight, behavior: 'smooth' })
+  }, [currentPage])
 
   const renderContent = () => {
     switch (currentPage) {
@@ -30,7 +36,6 @@ function App() {
             <HeroSlider />
             <Services onViewAll={() => handleNavigate('services')} />
             <WhyChooseUs />
-            {/* <ReviewsSlider /> */}
           </>
         )
       case 'services':
@@ -46,21 +51,15 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      {/* TopBar visible only on desktop */}
       <div className="hidden md:block fixed top-0 left-0 right-0 z-50">
         <TopBar />
       </div>
 
-      {/* Navbar fixed at the very top */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <Navbar onNavigate={handleNavigate} currentPage={currentPage} />
       </div>
 
-      {/* Main content padding */}
-      <main className="pt-14 md:pt-[90px]">
-        {renderContent()}
-      </main>
+      <main className="pt-14 md:pt-[90px]">{renderContent()}</main>
 
       <Footer onNavigate={handleNavigate} />
       <WhatsAppWidget />
