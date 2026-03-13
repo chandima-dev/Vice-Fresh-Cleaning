@@ -34,7 +34,7 @@ const services = [
     description:
       'Intensive cleaning for those hard-to-reach areas. Perfect for spring cleaning or special occasions.',
     image:
-      'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=800&q=80',
+      '/Images/deep-cleaning.webp',
   },
   {
     icon: Brush,
@@ -50,7 +50,7 @@ const services = [
     description:
       'Crystal clear windows, inside and out. Let the light shine through with our streak-free service.',
     image:
-      'https://images.unsplash.com/photo-1596263373844-45894a3eb1d4?w=800&q=80',
+      '/Images/window-cleaning.jpg',
   },
   {
     icon: Truck,

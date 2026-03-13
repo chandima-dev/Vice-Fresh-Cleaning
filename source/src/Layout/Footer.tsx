@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Phone,
   Mail,
@@ -46,7 +47,7 @@ export function Footer({ onNavigate }: FooterProps) {
               onClick={(e) => handleNav('home', e)}
               className="text-2xl font-bold text-white tracking-tight inline-block"
             >
-              Vice Fresh <span className="text-blue-500">Cleaning</span>
+              Vice Fresh <span className="text-emerald-400">Cleaning</span>
             </a>
             <p className="text-slate-400 leading-relaxed max-w-sm">
               Making your space sparkle since 2020. We provide professional,
@@ -90,7 +91,7 @@ export function Footer({ onNavigate }: FooterProps) {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-blue-400">
+            <h3 className="text-lg font-semibold mb-6 text-emerald-400">
               Quick Links
             </h3>
             <ul className="space-y-4">
@@ -240,7 +241,7 @@ export function Footer({ onNavigate }: FooterProps) {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-blue-400">
+            <h3 className="text-lg font-semibold mb-6 text-emerald-400">
               Contact Us
             </h3>
             <ul className="space-y-4">
@@ -254,7 +255,7 @@ export function Footer({ onNavigate }: FooterProps) {
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
+                <Mail className="w-5 h-5 text-emerald-500 shrink-0 mt-1" />
                 <a
                   href="mailto:info@vicefreshcleaning.com"
                   className="text-slate-400 hover:text-white transition-colors"
