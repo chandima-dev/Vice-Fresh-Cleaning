@@ -57,7 +57,7 @@ const services = [
       'Light Fixtures & Fans',
     ],
     image:
-      'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=800&q=80',
+      '/Images/deep-cleaning.webp',
   },
   {
     icon: Truck,
@@ -71,7 +71,7 @@ const services = [
       'Key Pick-up/Drop-off',
     ],
     image:
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
+      '/Images/End-of-Lease-Cleaning.jpg',
   },
   {
     icon: Hammer,
@@ -113,7 +113,7 @@ const services = [
       'Graffiti Removal',
     ],
     image:
-      'https://images.unsplash.com/photo-1622735808137-c1bc38c2b0f2?w=800&q=80',
+      '/Images/pressure-cleaning.jpeg',
   },
   {
     icon: Wind,
@@ -127,7 +127,7 @@ const services = [
       'High Reach Capability',
     ],
     image:
-      'https://images.unsplash.com/photo-1596263373844-45894a3eb1d4?w=800&q=80',
+      '/Images/window-cleaning.jpg',
   },
   {
     icon: Sofa,
@@ -155,7 +155,7 @@ const services = [
       'Carbon Deposit Removal',
     ],
     image:
-      'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=800&q=80',
+      '/Images/oven-cleaning.webp',
   },
   {
     icon: Brush,
