@@ -174,20 +174,21 @@ export function HeroSlider() {
 
       {/* Arrows */}
 
+      {/* Left Arrow */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white items-center justify-center"
       >
         <ChevronLeft size={32} />
       </button>
 
+      {/* Right Arrow */}
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white items-center justify-center"
       >
         <ChevronRight size={32} />
       </button>
-
       {/* Dots */}
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
