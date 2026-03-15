@@ -75,7 +75,7 @@ export function Contact() {
             }}
             className="text-lg text-slate-600 max-w-2xl mx-auto"
           >
-            Ready to experience the Vice Fresh difference? Contact us today for
+            Ready to experience the Vie Fresh difference? Contact us today for
             a free quote or to schedule your first cleaning.
           </motion.p>
         </div>

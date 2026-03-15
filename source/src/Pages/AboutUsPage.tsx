@@ -57,7 +57,7 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
               Our Story
             </h2>
             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-              Vice Fresh Cleaning started with a simple mission: to provide
+              Vic Fresh Cleaning started with a simple mission: to provide
               high-quality, reliable cleaning services to Melbourne homes and
               businesses. What began as a small team has grown into one of the
               city's most trusted cleaning providers.

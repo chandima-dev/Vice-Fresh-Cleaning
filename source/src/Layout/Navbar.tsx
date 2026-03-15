@@ -50,7 +50,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
               onClick={() => handleNavClick('home')}
               className="text-2xl font-bold text-slate-900 tracking-tight"
             >
-              Vice Fresh <span className="text-blue-600">Cleaning</span>
+              Vic Fresh <span className="text-blue-600">Cleaning</span>
             </button>
           </div>
 
