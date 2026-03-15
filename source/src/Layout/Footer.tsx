@@ -47,7 +47,7 @@ export function Footer({ onNavigate }: FooterProps) {
               onClick={(e) => handleNav('home', e)}
               className="text-2xl font-bold text-white tracking-tight inline-block"
             >
-              Vice Fresh <span className="text-emerald-400">Cleaning</span>
+              Vic Fresh <span className="text-emerald-400">Cleaning</span>
             </a>
             <p className="text-slate-400 leading-relaxed max-w-sm">
               Making your space sparkle since 2020. We provide professional,
@@ -278,7 +278,7 @@ export function Footer({ onNavigate }: FooterProps) {
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 pt-8 text-center">
           <p className="text-slate-500 text-sm">
-            &copy; {new Date().getFullYear()} Vice Fresh Cleaning. All rights
+            &copy; {new Date().getFullYear()} Vic Fresh Cleaning. All rights
             reserved.
           </p>
         </div>

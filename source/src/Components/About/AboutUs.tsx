@@ -56,10 +56,10 @@ export function AboutUs() {
             className="w-full lg:w-1/2"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-              About <span className="text-blue-600">Vice Fresh Cleaning</span>
+              About <span className="text-blue-600">Vic Fresh Cleaning</span>
             </h2>
             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-              Founded with a passion for pristine spaces, Vice Fresh Cleaning
+              Founded with a passion for pristine spaces, Vic Fresh Cleaning
               has been transforming homes and offices since 2020. We believe
               that a clean environment is the foundation for a happy, productive
               life.

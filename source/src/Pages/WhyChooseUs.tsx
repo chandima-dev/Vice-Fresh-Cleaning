@@ -49,7 +49,7 @@ export function WhyChooseUs() {
             className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
           >
             Why Choose{' '}
-            <span className="text-emerald-600">Vice Fresh Cleaning?</span>
+            <span className="text-emerald-600">Vic Fresh Cleaning?</span>
           </motion.h2>
           <motion.div
             initial={{
