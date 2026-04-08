@@ -257,10 +257,10 @@ export function Footer({ onNavigate }: FooterProps) {
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-emerald-500 shrink-0 mt-1" />
                 <a
-                  href="mailto:info@vicefreshcleaning.com"
+                  href="mailto:info@vicfreshcleaning.com.au"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  info@vicefreshcleaning.com
+                  info@vicfreshcleaning.com.au
                 </a>
               </li>
               <li className="flex items-start gap-3">
