@@ -251,7 +251,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="tel:+61452240465"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  +61 452 240 465
+                  +61 423 557 742
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -266,9 +266,9 @@ export function Footer({ onNavigate }: FooterProps) {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
                 <span className="text-slate-400">
-                  15 Collins Street
+                  7/597-605, Clayton road
                   <br />
-                  Melbourne, VIC 3000
+                  Clarinda
                 </span>
               </li>
             </ul>

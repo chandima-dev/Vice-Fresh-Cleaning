@@ -99,7 +99,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                       href="tel:+61452240465"
                       className="text-lg font-semibold text-slate-900 hover:text-blue-600 transition-colors"
                     >
-                      +61 452 240 465
+                      +61 423 557 742
                     </a>
                   </div>
                 </div>
@@ -130,10 +130,10 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                       Location
                     </p>
                     <p className="text-lg font-semibold text-slate-900">
-                      15 Collins Street
+                      7/597-605, Clayton road
                     </p>
                     <p className="text-slate-600">
-                      Melbourne, VIC 3000, Australia
+                      Clarinda
                     </p>
                   </div>
                 </div>
@@ -235,7 +235,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                       value={formState.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                      placeholder="+61 452 240 465"
+                      placeholder="+61 423 557 742"
                     />
                   </div>
                 </div>
