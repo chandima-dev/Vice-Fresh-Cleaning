@@ -5,7 +5,7 @@ export function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [message, setMessage] = useState('')
   const handleSend = () => {
-    const phoneNumber = '94705901816' // Updated WhatsApp number
+    const phoneNumber = '61423557742' // Updated WhatsApp number
     const encodedMessage = encodeURIComponent(message)
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank')
     setIsOpen(false)

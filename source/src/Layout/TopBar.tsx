@@ -10,7 +10,7 @@ export function TopBar() {
             className="flex items-center gap-2 hover:text-blue-400 transition-colors"
           >
             <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <span>+61 452 240 465</span>
+            <span>+61 423 557 742</span>
           </a>
           <a
             href="mailto:info@vicfreshcleaning.com"
