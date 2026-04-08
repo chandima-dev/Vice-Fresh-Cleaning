@@ -133,10 +133,10 @@ export function Contact() {
                       Email Us
                     </p>
                     <a
-                      href="mailto:info@vicefreshcleaning.com"
+                      href="mailto:info@vicfreshcleaning.com.au"
                       className="text-lg font-semibold text-slate-900 hover:text-blue-600 transition-colors"
                     >
-                      info@vicefreshcleaning.com
+                      info@vicfreshcleaning.com.au
                     </a>
                     <p className="text-sm text-slate-500 mt-1">
                       We reply within 24 hours

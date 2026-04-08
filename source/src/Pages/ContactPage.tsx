@@ -113,10 +113,10 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
                       Email
                     </p>
                     <a
-                      href="mailto:info@vicefreshcleaning.com"
+                      href="mailto:info@vicfreshcleaning.com.au"
                       className="text-lg font-semibold text-slate-900 hover:text-blue-600 transition-colors"
                     >
-                      info@vicefreshcleaning.com
+                      info@vicfreshcleaning.com.au
                     </a>
                   </div>
                 </div>
