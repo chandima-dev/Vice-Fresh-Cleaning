@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { TopBar } from './Layout/TopBar'
 import { Navbar } from './Layout/Navbar'
 import { HeroSlider } from './Layout/HeroSlider'
@@ -15,18 +15,13 @@ type Page = 'home' | 'services' | 'about' | 'contact'
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
 
+  // ✅ FIXED: Scroll handled here directly
   const handleNavigate = (page: Page) => {
     setCurrentPage(page)
-    // No need to scroll here
-  }
 
-  // Scroll to top **whenever currentPage changes**
-  useEffect(() => {
-    // const navbarHeight = 90 // adjust if needed
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-    // If you want to scroll **below navbar**, use:
-    // window.scrollTo({ top: navbarHeight, behavior: 'smooth' })
-  }, [currentPage])
+    // instant scroll to top (reliable)
+    window.scrollTo(0, 0)
+  }
 
   const renderContent = () => {
     switch (currentPage) {
@@ -51,17 +46,26 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Top Bar */}
       <div className="hidden md:block fixed top-0 left-0 right-0 z-50">
         <TopBar />
       </div>
 
+      {/* Navbar */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <Navbar onNavigate={handleNavigate} currentPage={currentPage} />
       </div>
 
-      <main className="pt-14 md:pt-[90px]">{renderContent()}</main>
+      {/* Main Content */}
+      {/* Adjust padding to match navbar height */}
+      <main className="pt-16 md:pt-[90px]">
+        {renderContent()}
+      </main>
 
+      {/* Footer */}
       <Footer onNavigate={handleNavigate} />
+
+      {/* WhatsApp */}
       <WhatsAppWidget />
     </div>
   )
