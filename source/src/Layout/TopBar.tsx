@@ -13,11 +13,11 @@ export function TopBar() {
             <span>+61 423 557 742</span>
           </a>
           <a
-            href="mailto:info@vicfreshcleaning.com"
+            href="mailto:info@vicfreshcleaning.com.au"
             className="flex items-center gap-2 hover:text-blue-400 transition-colors"
           >
             <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            <span>info@vicfreshcleaning.com</span>
+            <span>info@vicfreshcleaning.com.au</span>
           </a>
         </div>
       </div>
