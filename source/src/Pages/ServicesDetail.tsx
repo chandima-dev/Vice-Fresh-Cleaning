@@ -12,6 +12,8 @@ import {
   Sofa,
   Flame,
   ArrowLeft,
+  Package,
+  Package2,
 } from 'lucide-react'
 interface ServiceDetailProps {
   onBack: () => void
@@ -60,7 +62,7 @@ const services = [
       '/Images/deep-cleaning.webp',
   },
   {
-    icon: Truck,
+    icon: Package,
     title: 'End of Lease Cleaning',
     description:
       'Secure your bond back with our specialized end of lease cleaning. We follow strict agency checklists to ensure the property is returned in pristine condition.',
@@ -171,20 +173,20 @@ const services = [
     image:
       'https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800&q=80',
   },
-  {
-    icon: Truck,
-    title: 'Move-In / Move-Out',
-    description:
-      'Stress-free cleaning for your move. Whether you are moving in or out, we ensure the property is spotless and ready for the next chapter.',
-    features: [
-      'Whole House Clean',
-      'Cabinet Cleaning',
-      'Appliance Cleaning',
-      'Floor Care',
-    ],
-    image:
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
-  },
+  // {
+  //   icon: Truck,
+  //   title: 'Move-In / Move-Out',
+  //   description:
+  //     'Stress-free cleaning for your move. Whether you are moving in or out, we ensure the property is spotless and ready for the next chapter.',
+  //   features: [
+  //     'Whole House Clean',
+  //     'Cabinet Cleaning',
+  //     'Appliance Cleaning',
+  //     'Floor Care',
+  //   ],
+  //   image:
+  //     'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
+  // },
 ]
 export function ServiceDetail({ onBack }: ServiceDetailProps) {
   return (

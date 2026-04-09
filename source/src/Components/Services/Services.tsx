@@ -7,6 +7,7 @@ import {
   Wind,
   Truck,
   ArrowRight,
+  Package,
 } from 'lucide-react'
 interface ServicesProps {
   onViewAll: () => void
@@ -53,8 +54,8 @@ const services = [
       '/Images/window-cleaning.jpg',
   },
   {
-    icon: Truck,
-    title: 'Move-In / Move-Out',
+    icon: Package,
+    title: 'End of Lease Cleaning',
     description:
       'Complete cleaning for smooth transitions. Ensure you get your deposit back or move into a fresh home.',
     image:
