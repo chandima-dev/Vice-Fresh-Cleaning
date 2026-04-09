@@ -70,7 +70,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-medium transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-2"
             >
               <Phone className="w-4 h-4" />
-              Book Now
+              Get a Free Quote
             </button>
           </div>
 
@@ -128,7 +128,7 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
                   onClick={() => handleNavClick('contact')}
                   className="block w-full text-center bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 rounded-lg font-medium transition-colors shadow-sm"
                 >
-                  Book Now
+                  Get a Free Quote
                 </button>
               </div>
             </div>
