@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Component } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import emailjs from 'emailjs-com'
 import { motion } from 'framer-motion'
 import {
@@ -9,7 +9,6 @@ import {
   ArrowLeft,
   Clock,
   ChevronDown,
-  CheckIcon,
   XIcon,
 } from 'lucide-react'
 interface ContactPageProps {
