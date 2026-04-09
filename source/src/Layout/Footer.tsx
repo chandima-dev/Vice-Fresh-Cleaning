@@ -3,12 +3,9 @@ import {
   Phone,
   Mail,
   MapPin,
-  Facebook,
-  Instagram,
   MessageCircle,
-  CreditCard,
 } from 'lucide-react'
-
+import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 interface FooterProps {
   onNavigate?: (page: any) => void
 }
@@ -57,14 +54,15 @@ export function Footer({ onNavigate }: FooterProps) {
                 className="bg-slate-800 p-2 rounded-full hover:bg-blue-600 transition-colors duration-300"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5" />
+                <FaFacebookF className="w-5 h-5 text-white" />
               </a>
+
               <a
                 href="#"
                 className="bg-slate-800 p-2 rounded-full hover:bg-pink-600 transition-colors duration-300"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" />
+                <FaInstagram className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"

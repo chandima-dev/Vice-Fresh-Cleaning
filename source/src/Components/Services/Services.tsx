@@ -5,7 +5,6 @@ import {
   Sparkles,
   Brush,
   Wind,
-  Truck,
   ArrowRight,
   Package,
 } from 'lucide-react'

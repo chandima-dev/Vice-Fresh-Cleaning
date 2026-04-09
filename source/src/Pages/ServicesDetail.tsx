@@ -5,7 +5,6 @@ import {
   Sparkles,
   Brush,
   Wind,
-  Truck,
   Hammer,
   Utensils,
   Droplets,
@@ -13,7 +12,6 @@ import {
   Flame,
   ArrowLeft,
   Package,
-  Package2,
 } from 'lucide-react'
 interface ServiceDetailProps {
   onBack: () => void
