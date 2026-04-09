@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import {
   Phone,
   Mail,
-  MapPin,
   Send,
   ArrowLeft,
   Clock,
@@ -169,15 +168,21 @@ const handleSubmit = (e: React.FormEvent) => {
                     <Phone className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-slate-500 mb-1">
-                      Phone
-                    </p>
-                    <a
-                      href="tel:+61452240465"
-                      className="text-lg font-semibold text-slate-900 hover:text-blue-600 transition-colors"
-                    >
-                      +61 452 240 465
-                    </a>
+                    <p className="text-sm font-medium text-slate-500 mb-1">Phone</p>
+                    <div className="text-lg font-semibold text-slate-900 flex flex-col">
+                      <a
+                        href="tel:+61452240465"
+                        className="hover:text-blue-600 transition-colors"
+                      >
+                        +61 452 240 465
+                      </a>
+                      <a
+                        href="tel:+61422790822"
+                        className="hover:text-blue-600 transition-colors"
+                      >
+                        +61 422 790 822
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -198,7 +203,7 @@ const handleSubmit = (e: React.FormEvent) => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+                {/* <div className="flex items-start gap-4">
                   <div className="bg-white p-3 rounded-lg shadow-sm text-blue-600">
                     <MapPin className="w-6 h-6" />
                   </div>
@@ -213,7 +218,7 @@ const handleSubmit = (e: React.FormEvent) => {
                       Melbourne, VIC 3000, Australia
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-start gap-4">
                   <div className="bg-white p-3 rounded-lg shadow-sm text-blue-600">
@@ -409,24 +414,24 @@ const handleSubmit = (e: React.FormEvent) => {
                 </div>
 
                 {/* Service Area */}
-                <div>
-                  <label
-                    htmlFor="serviceArea"
-                    className="block text-sm font-medium text-slate-700 mb-2"
-                  >
-                    Where do you need the service?
-                  </label>
-                  <input
-                    type="text"
-                    id="serviceArea"
-                    name="serviceArea"
-                    value={formState.serviceArea}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                    placeholder="e.g. 200 FLINDERS ST, MELBOURNE VIC 3000, AUSTRALIA"
-                  />
-                </div>
+              <div>
+                <label
+                  htmlFor="serviceArea"
+                  className="block text-sm font-medium text-slate-700 mb-2"
+                >
+                  Where do you need the service?
+                </label>
+                <input
+                  type="text"
+                  id="serviceArea"
+                  name="serviceArea"
+                  value={formState.serviceArea}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  placeholder="e.g. 200 FLINDERS ST, MELBOURNE VIC 3000, AUSTRALIA"
+                />
+              </div>
 
                 {/* Message */}
                 <div>
