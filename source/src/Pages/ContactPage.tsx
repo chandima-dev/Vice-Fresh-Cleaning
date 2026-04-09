@@ -173,13 +173,13 @@ const handleSubmit = (e: React.FormEvent) => {
                     <p className="text-sm font-medium text-slate-500 mb-1">Phone</p>
                     <div className="text-lg font-semibold text-slate-900 flex flex-col">
                       <a
-                        href="tel:+61452240465"
+                        href="tel:+61423557742"
                         className="hover:text-blue-600 transition-colors"
                       >
-                        +61 452 240 465
+                        +61 423 557 742
                       </a>
                       <a
-                        href="tel:+61422790822"
+                        href="tel:61422790822"
                         className="hover:text-blue-600 transition-colors"
                       >
                         +61 422 790 822
@@ -321,7 +321,7 @@ const handleSubmit = (e: React.FormEvent) => {
                       required
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                      placeholder="+61 452 240 465"
+                      placeholder="+61 423 557 742"
                     />
                   </div>
                 </div>
