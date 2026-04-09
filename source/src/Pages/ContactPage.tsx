@@ -13,6 +13,7 @@ import {
 interface ContactPageProps {
   onNavigate: (page: 'home') => void
 }
+
 const serviceOptions = [
   'Residential Cleaning',
   'Office Cleaning',
@@ -36,6 +37,7 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
     serviceArea: '',
     message: '',
   })
+  const [addressSuggestions, setAddressSuggestions] = useState<string[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -171,13 +173,13 @@ const handleSubmit = (e: React.FormEvent) => {
                     <p className="text-sm font-medium text-slate-500 mb-1">Phone</p>
                     <div className="text-lg font-semibold text-slate-900 flex flex-col">
                       <a
-                        href="tel:+61452240465"
+                        href="tel:+61423557742"
                         className="hover:text-blue-600 transition-colors"
                       >
-                        +61 452 240 465
+                        +61 423 557 742
                       </a>
                       <a
-                        href="tel:+61422790822"
+                        href="tel:61422790822"
                         className="hover:text-blue-600 transition-colors"
                       >
                         +61 422 790 822
@@ -319,7 +321,7 @@ const handleSubmit = (e: React.FormEvent) => {
                       required
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                      placeholder="+61 452 240 465"
+                      placeholder="+61 423 557 742"
                     />
                   </div>
                 </div>
@@ -414,24 +416,61 @@ const handleSubmit = (e: React.FormEvent) => {
                 </div>
 
                 {/* Service Area */}
-              <div>
-                <label
-                  htmlFor="serviceArea"
-                  className="block text-sm font-medium text-slate-700 mb-2"
-                >
-                  Where do you need the service?
-                </label>
-                <input
-                  type="text"
-                  id="serviceArea"
-                  name="serviceArea"
-                  value={formState.serviceArea}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  placeholder="e.g. 200 FLINDERS ST, MELBOURNE VIC 3000, AUSTRALIA"
-                />
-              </div>
+                {/* Service Area with Autocomplete */}
+                <div className="relative">
+                  <label
+                    htmlFor="serviceArea"
+                    className="block text-sm font-medium text-slate-700 mb-2"
+                  >
+                    Where do you need the service?
+                  </label>
+                  <input
+                    type="text"
+                    id="serviceArea"
+                    name="serviceArea"
+                    value={formState.serviceArea}
+                    onChange={async (e) => {
+                      const val = e.target.value
+                      setFormState({ ...formState, serviceArea: val })
+
+                      // Fetch suggestions from OpenStreetMap Nominatim
+                      if (val.length > 2) {
+                        try {
+                                const response = await fetch(
+                                  `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(val)}&format=json&addressdetails=1&limit=5&countrycodes=au`
+                                )
+                          const data = await response.json()
+                          setAddressSuggestions(data.map((item: any) => item.display_name))
+                        } catch (err) {
+                          console.error(err)
+                        }
+                      } else {
+                        setAddressSuggestions([])
+                      }
+                    }}
+                    autoComplete="off"
+                    placeholder="e.g. 200 FLINDERS ST, MELBOURNE VIC 3000, AUSTRALIA"
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
+
+                  {/* Suggestions Dropdown */}
+                  {addressSuggestions.length > 0 && (
+                    <ul className="absolute z-20 w-full bg-white border border-slate-300 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+                      {addressSuggestions.map((addr, idx) => (
+                        <li
+                          key={idx}
+                          onClick={() => {
+                            setFormState({ ...formState, serviceArea: addr })
+                            setAddressSuggestions([])
+                          }}
+                          className="px-4 py-2 hover:bg-slate-100 cursor-pointer text-sm"
+                        >
+                          {addr}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
 
                 {/* Message */}
                 <div>

@@ -6,7 +6,7 @@ export function TopBar() {
         {/* Contact Info */}
         <div className="flex items-center gap-4 sm:gap-6">
           <a
-            href="tel:+61452240465"
+            href="tel:+61423557742"
             className="flex items-center gap-2 hover:text-blue-400 transition-colors"
           >
             <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
