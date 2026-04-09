@@ -162,7 +162,7 @@ export function HeroSlider() {
                 transition={{ delay: 0.7 }}
                 className="inline-block bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-full font-semibold"
               >
-                Book Now
+                Get a Free Quote
               </motion.a>
 
             </div>
