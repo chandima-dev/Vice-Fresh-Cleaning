@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const reviews = [
   { name: "Sarah M.", location: "Melbourne VIC, Australia", rating: 5, comment: "Absolutely spotless service." },
-  { name: "James L.", location: "Sydney NSW, Australia", rating: 5, comment: "Got our full bond back!" },
-  { name: "Priya K.", location: "Brisbane QLD, Australia", rating: 4, comment: "Very reliable every visit." },
-  { name: "Michael T.", location: "Perth WA, Australia", rating: 5, comment: "Office looks amazing now." },
-  { name: "Emma W.", location: "Adelaide SA, Australia", rating: 5, comment: "Friendly and eco-friendly team." },
+  { name: "James L.", location: "Melbourne VIC, Australia", rating: 5, comment: "Got our full bond back!" },
+  { name: "Priya K.", location: "Melbourne VIC, Australia", rating: 4, comment: "Very reliable every visit." },
+  { name: "Michael T.", location: "Melbourne VIC, Australia", rating: 5, comment: "Office looks amazing now." },
+  { name: "Emma W.", location: "Melbourne VIC, Australia", rating: 5, comment: "Friendly and eco-friendly team." },
 ]
 
 function StarRating({ rating }: { rating: number }) {
