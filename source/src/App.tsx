@@ -16,19 +16,19 @@ type Page = 'home' | 'services' | 'about' | 'contact'
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
 
-  // ✅ Navigation only updates state
+  // ✅ Navigation updates state
   const handleNavigate = (page: Page) => {
     setCurrentPage(page)
   }
 
-  // ✅ GLOBAL scroll fix (works for ALL pages)
+  // ✅ Scroll to top on page change (works for mobile & desktop)
   useEffect(() => {
-    // small delay ensures DOM is rendered (important for mobile)
+    // small delay ensures DOM is rendered
     setTimeout(() => {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'instant' // change to 'smooth' if you want
+        behavior: 'instant' // use 'smooth' for animated scroll
       })
     }, 0)
   }, [currentPage])
@@ -38,22 +38,18 @@ function App() {
       case 'home':
         return (
           <>
-            <HeroSlider />
+            <HeroSlider onNavigate={handleNavigate} />
             <Services onViewAll={() => handleNavigate('services')} />
             <ReviewsSlider />
             <WhyChooseUs />
           </>
         )
-
       case 'services':
         return <ServiceDetail onBack={() => handleNavigate('home')} />
-
       case 'about':
         return <AboutUsPage onNavigate={handleNavigate} />
-
       case 'contact':
         return <ContactPage onNavigate={handleNavigate} />
-
       default:
         return null
     }
@@ -72,14 +68,12 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <main className="pt-16 md:pt-[90px]">
-        {renderContent()}
-      </main>
+      <main className="pt-16 md:pt-[90px]">{renderContent()}</main>
 
       {/* Footer */}
       <Footer onNavigate={handleNavigate} />
 
-      {/* WhatsApp */}
+      {/* WhatsApp Widget */}
       <WhatsAppWidget />
     </div>
   )
