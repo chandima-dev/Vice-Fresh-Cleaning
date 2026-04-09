@@ -1,49 +1,49 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+
 interface NavbarProps {
   onNavigate: (page: 'home' | 'services' | 'about' | 'contact') => void
   currentPage: 'home' | 'services' | 'about' | 'contact'
 }
+
 export function Navbar({ onNavigate, currentPage }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // ✅ FIXED: removed scroll from here
   const handleNavClick = (page: 'home' | 'services' | 'about' | 'contact') => {
     setIsOpen(false)
     onNavigate(page)
-    window.scrollTo(0, 0)
   }
+
   const navLinks = [
-    {
-      name: 'Home',
-      page: 'home' as const,
-    },
-    {
-      name: 'Services',
-      page: 'services' as const,
-    },
-    {
-      name: 'About Us',
-      page: 'about' as const,
-    },
-    {
-      name: 'Contact',
-      page: 'contact' as const,
-    },
+    { name: 'Home', page: 'home' as const },
+    { name: 'Services', page: 'services' as const },
+    { name: 'About Us', page: 'about' as const },
+    { name: 'Contact', page: 'contact' as const },
   ]
+
   return (
     <nav
-      className={`fixed top-0 sm:top-[40px] left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-white/95 backdrop-blur-sm py-4'}`}
+      className={`fixed top-0 sm:top-[40px] left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white shadow-md py-3'
+          : 'bg-white/95 backdrop-blur-sm py-4'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
+          
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <button
@@ -60,11 +60,16 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.page)}
-                className={`font-medium transition-colors duration-200 ${currentPage === link.page ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'}`}
+                className={`font-medium transition-colors duration-200 ${
+                  currentPage === link.page
+                    ? 'text-blue-600'
+                    : 'text-slate-600 hover:text-blue-600'
+                }`}
               >
                 {link.name}
               </button>
             ))}
+
             <button
               onClick={() => handleNavClick('contact')}
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-medium transition-all duration-200 shadow-sm hover:shadow-md flex items-center gap-2"
@@ -91,26 +96,14 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{
-              opacity: 0,
-              height: 0,
-            }}
-            animate={{
-              opacity: 1,
-              height: 'auto',
-            }}
-            exit={{
-              opacity: 0,
-              height: 0,
-            }}
-            transition={{
-              duration: 0.3,
-              ease: 'easeInOut',
-            }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2 shadow-inner">
@@ -118,11 +111,16 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.page)}
-                  className={`block w-full text-left px-3 py-3 text-base font-medium rounded-lg transition-colors ${currentPage === link.page ? 'text-blue-600 bg-blue-50' : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50'}`}
+                  className={`block w-full text-left px-3 py-3 text-base font-medium rounded-lg transition-colors ${
+                    currentPage === link.page
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-slate-600 hover:text-blue-600 hover:bg-blue-50'
+                  }`}
                 >
                   {link.name}
                 </button>
               ))}
+
               <div className="pt-4">
                 <button
                   onClick={() => handleNavClick('contact')}

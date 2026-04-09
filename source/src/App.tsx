@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TopBar } from './Layout/TopBar'
 import { Navbar } from './Layout/Navbar'
 import { HeroSlider } from './Layout/HeroSlider'
@@ -15,13 +15,22 @@ type Page = 'home' | 'services' | 'about' | 'contact'
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
 
-  // ✅ FIXED: Scroll handled here directly
+  // ✅ Navigation only updates state
   const handleNavigate = (page: Page) => {
     setCurrentPage(page)
-
-    // instant scroll to top (reliable)
-    window.scrollTo(0, 0)
   }
+
+  // ✅ GLOBAL scroll fix (works for ALL pages)
+  useEffect(() => {
+    // small delay ensures DOM is rendered (important for mobile)
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant' // change to 'smooth' if you want
+      })
+    }, 0)
+  }, [currentPage])
 
   const renderContent = () => {
     switch (currentPage) {
@@ -33,12 +42,16 @@ function App() {
             <WhyChooseUs />
           </>
         )
+
       case 'services':
         return <ServiceDetail onBack={() => handleNavigate('home')} />
+
       case 'about':
         return <AboutUsPage onNavigate={handleNavigate} />
+
       case 'contact':
         return <ContactPage onNavigate={handleNavigate} />
+
       default:
         return null
     }
@@ -57,7 +70,6 @@ function App() {
       </div>
 
       {/* Main Content */}
-      {/* Adjust padding to match navbar height */}
       <main className="pt-16 md:pt-[90px]">
         {renderContent()}
       </main>
