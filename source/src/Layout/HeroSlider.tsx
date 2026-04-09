@@ -10,6 +10,10 @@ interface Slide {
   alt: string
 }
 
+interface HeroSliderProps {
+  onNavigate: (page: "home" | "services" | "about" | "contact") => void
+}
+
 const slides: Slide[] = [
   {
     id: 1,
@@ -42,7 +46,7 @@ const slides: Slide[] = [
   },
 ]
 
-export function HeroSlider() {
+export function HeroSlider({ onNavigate }: HeroSliderProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const [direction, setDirection] = useState<number>(0)
 
@@ -74,9 +78,7 @@ export function HeroSlider() {
 
   const prevSlide = () => {
     setDirection(-1)
-    setCurrentIndex((prev) =>
-      prev === 0 ? slides.length - 1 : prev - 1
-    )
+    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1))
   }
 
   const goToSlide = (index: number) => {
@@ -103,9 +105,7 @@ export function HeroSlider() {
 
   return (
     <section className="relative h-[600px] md:h-screen w-full overflow-hidden bg-slate-900">
-
       <AnimatePresence initial={false} custom={direction}>
-
         <motion.div
           key={currentIndex}
           custom={direction}
@@ -119,7 +119,6 @@ export function HeroSlider() {
           }}
           className="absolute inset-0 will-change-transform"
         >
-
           {/* Background */}
           <div className="relative w-full h-full">
             <img
@@ -128,15 +127,12 @@ export function HeroSlider() {
               className="w-full h-full object-cover"
               loading="eager"
             />
-
             <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/50 to-transparent" />
           </div>
 
           {/* Content */}
           <div className="absolute inset-0 flex items-center justify-center md:justify-start px-8 max-w-7xl mx-auto">
-
             <div className="max-w-xl text-white">
-
               <motion.h1
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -155,26 +151,21 @@ export function HeroSlider() {
                 {slides[currentIndex].subtitle}
               </motion.p>
 
-              <motion.a
-                href="#contact"
+              <motion.button
+                onClick={() => onNavigate("contact")}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
                 className="inline-block bg-emerald-600 hover:bg-emerald-700 px-8 py-4 rounded-full font-semibold"
               >
                 Get a Free Quote
-              </motion.a>
-
+              </motion.button>
             </div>
           </div>
-
         </motion.div>
-
       </AnimatePresence>
 
       {/* Arrows */}
-
-      {/* Left Arrow */}
       <button
         onClick={prevSlide}
         className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white items-center justify-center"
@@ -182,17 +173,15 @@ export function HeroSlider() {
         <ChevronLeft size={32} />
       </button>
 
-      {/* Right Arrow */}
       <button
         onClick={nextSlide}
         className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 text-white items-center justify-center"
       >
         <ChevronRight size={32} />
       </button>
+
       {/* Dots */}
-
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
-
         {slides.map((_, index) => (
           <button
             key={index}
@@ -204,9 +193,7 @@ export function HeroSlider() {
             }`}
           />
         ))}
-
       </div>
-
     </section>
   )
 }
