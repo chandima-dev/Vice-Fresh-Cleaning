@@ -38,9 +38,12 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
     message: '',
   })
   const [addressSuggestions, setAddressSuggestions] = useState<string[]>([])
+  const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const addressRef = useRef<HTMLDivElement>(null)
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -53,6 +56,48 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
+
+  // Close address suggestions on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (addressRef.current && !addressRef.current.contains(event.target as Node)) {
+        setAddressSuggestions([])
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const fetchAddressSuggestions = (query: string) => {
+    if (debounceTimer.current) clearTimeout(debounceTimer.current)
+
+    if (query.length < 3) {
+      setAddressSuggestions([])
+      setIsLoadingSuggestions(false)
+      return
+    }
+
+    setIsLoadingSuggestions(true)
+
+    debounceTimer.current = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=6&lang=en&layer=house&layer=street&layer=locality&layer=city&layer=state`
+        )
+        const data = await res.json()
+        const suggestions = data.features.map((f: any) => {
+          const p = f.properties
+          const parts = [p.name, p.housenumber, p.street, p.city || p.locality, p.state, p.postcode, p.country].filter(Boolean)
+          return parts.join(', ')
+        })
+        setAddressSuggestions(suggestions)
+      } catch {
+        setAddressSuggestions([])
+      } finally {
+        setIsLoadingSuggestions(false)
+      }
+    }, 300)
+  }
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -120,7 +165,7 @@ const handleSubmit = (e: React.FormEvent) => {
     )
 }
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white pt-20 overflow-x-hidden">
       {/* Hero Header */}
       <div className="bg-blue-600 text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -415,47 +460,39 @@ const handleSubmit = (e: React.FormEvent) => {
                   </div>
                 </div>
 
-                {/* Service Area */}
                 {/* Service Area with Autocomplete */}
-                <div className="relative">
+                <div className="relative" ref={addressRef}>
                   <label
                     htmlFor="serviceArea"
                     className="block text-sm font-medium text-slate-700 mb-2"
                   >
                     Where do you need the service?
                   </label>
-                  <input
-                    type="text"
-                    id="serviceArea"
-                    name="serviceArea"
-                    value={formState.serviceArea}
-                    onChange={async (e) => {
-                      const val = e.target.value
-                      setFormState({ ...formState, serviceArea: val })
-
-                      // Fetch suggestions from OpenStreetMap Nominatim
-                      if (val.length > 2) {
-                        try {
-                                const response = await fetch(
-                                  `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(val)}&format=json&addressdetails=1&limit=5&countrycodes=au`
-                                )
-                          const data = await response.json()
-                          setAddressSuggestions(data.map((item: any) => item.display_name))
-                        } catch (err) {
-                          console.error(err)
-                        }
-                      } else {
-                        setAddressSuggestions([])
-                      }
-                    }}
-                    autoComplete="off"
-                    placeholder="e.g. 200 FLINDERS ST, MELBOURNE VIC 3000, AUSTRALIA"
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="serviceArea"
+                      name="serviceArea"
+                      value={formState.serviceArea}
+                      onChange={(e) => {
+                        const val = e.target.value
+                        setFormState({ ...formState, serviceArea: val })
+                        fetchAddressSuggestions(val)
+                      }}
+                      autoComplete="off"
+                      placeholder="Start typing an address..."
+                      className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    />
+                    {isLoadingSuggestions && (
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                        <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                      </div>
+                    )}
+                  </div>
 
                   {/* Suggestions Dropdown */}
                   {addressSuggestions.length > 0 && (
-                    <ul className="absolute z-20 w-full bg-white border border-slate-300 rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
+                    <ul className="absolute z-20 w-full bg-white border border-slate-200 rounded-lg shadow-xl mt-1 max-h-60 overflow-y-auto">
                       {addressSuggestions.map((addr, idx) => (
                         <li
                           key={idx}
@@ -463,9 +500,13 @@ const handleSubmit = (e: React.FormEvent) => {
                             setFormState({ ...formState, serviceArea: addr })
                             setAddressSuggestions([])
                           }}
-                          className="px-4 py-2 hover:bg-slate-100 cursor-pointer text-sm"
+                          className="px-4 py-3 hover:bg-blue-50 cursor-pointer text-sm border-b border-slate-100 last:border-0 flex items-start gap-2"
                         >
-                          {addr}
+                          <svg className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                          <span>{addr}</span>
                         </li>
                       ))}
                     </ul>
