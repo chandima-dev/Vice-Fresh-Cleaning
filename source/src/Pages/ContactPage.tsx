@@ -44,6 +44,29 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const addressRef = useRef<HTMLDivElement>(null)
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const autocompleteService = useRef<google.maps.places.AutocompleteService | null>(null)
+  const googleLoaded = useRef(false)
+
+  // Load Google Maps Places library
+  useEffect(() => {
+    if (googleLoaded.current) return
+    googleLoaded.current = true
+
+    const apiKey = import.meta.env.VITE_GOOGLE_PLACES_API_KEY
+    if (!apiKey || apiKey === 'YOUR_GOOGLE_API_KEY_HERE') {
+      console.warn('Google Places API key not configured. Falling back to free geocoding.')
+      return
+    }
+
+    const script = document.createElement('script')
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`
+    script.async = true
+    script.onload = () => {
+      autocompleteService.current = new google.maps.places.AutocompleteService()
+    }
+    document.head.appendChild(script)
+  }, [])
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -80,6 +103,27 @@ export function ContactPage({ onNavigate }: ContactPageProps) {
     setIsLoadingSuggestions(true)
 
     debounceTimer.current = setTimeout(async () => {
+      // Use Google Places if available
+      if (autocompleteService.current) {
+        autocompleteService.current.getPlacePredictions(
+          {
+            input: query,
+            componentRestrictions: { country: 'au' },
+            types: ['address'],
+          },
+          (predictions, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && predictions) {
+              setAddressSuggestions(predictions.map((p) => p.description))
+            } else {
+              setAddressSuggestions([])
+            }
+            setIsLoadingSuggestions(false)
+          }
+        )
+        return
+      }
+
+      // Fallback to free Photon API
       try {
         const res = await fetch(
           `https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=6&lang=en&layer=house&layer=street&layer=locality&layer=city&layer=state`
@@ -165,7 +209,7 @@ const handleSubmit = (e: React.FormEvent) => {
     )
 }
   return (
-    <div className="min-h-screen bg-white pt-20 overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Header */}
       <div className="bg-blue-600 text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

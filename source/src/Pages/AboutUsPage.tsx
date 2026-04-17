@@ -7,7 +7,7 @@ interface AboutUsPageProps {
 
 export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
   return (
-    <div className="min-h-screen bg-white pt-20 overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Header */}
       <div className="bg-slate-900 text-white py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

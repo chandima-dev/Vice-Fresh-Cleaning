@@ -137,10 +137,10 @@ export function Footer({ onNavigate }: FooterProps) {
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
                 <a
-                  href="tel:+61423557742"
+                  href="tel:+61422790822"
                   className="text-slate-400 hover:text-white transition-colors"
                 >
-                  +61 423 557 742
+                  +61 422 790 822
                 </a>
               </li>
               <li className="flex items-start gap-3">
