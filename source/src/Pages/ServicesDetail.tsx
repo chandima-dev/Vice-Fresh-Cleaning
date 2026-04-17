@@ -188,7 +188,7 @@ const services = [
 ]
 export function ServiceDetail({ onBack }: ServiceDetailProps) {
   return (
-    <div className="min-h-screen bg-slate-50 pt-20">
+    <div className="min-h-screen bg-slate-50">
       {/* Hero Header */}
       <div className="bg-slate-900 text-white py-20 px-4 sm:px-6 lg:px-8 mb-12 relative overflow-hidden">
         <div className="absolute inset-0">
