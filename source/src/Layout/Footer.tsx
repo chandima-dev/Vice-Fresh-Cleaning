@@ -34,7 +34,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-slate-900 text-white pt-16 pb-8">
+    <footer className="bg-slate-900 text-white pt-8 sm:pt-8 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid: 3 columns */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
@@ -43,9 +43,13 @@ export function Footer() {
             <a
               href="#home"
               onClick={(e) => handleNav('home', e)}
-              className="text-2xl font-bold text-white tracking-tight inline-block"
+              className="inline-block"
             >
-              Vic Fresh <span className="text-emerald-400">Cleaning</span>
+              <img
+                src="/VF-clean.svg"
+                alt="Vic Fresh Cleaning"
+                className="h-20 sm:h-20 w-auto object-contain -mt-4 sm:mt-0"
+              />
             </a>
             <p className="text-slate-400 leading-relaxed max-w-sm">
               Making your space sparkle since 2020. We provide professional,
