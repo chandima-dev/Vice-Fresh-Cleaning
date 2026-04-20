@@ -86,10 +86,7 @@ export function Services({ onViewAll }: ServicesProps = {}) {
             }}
             className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
           >
-            Our{' '}
-            <span className="text-blue-600">
-              Services
-            </span>
+            <span className="text-blue-600">Our Services</span>
           </motion.h2>
           <motion.p
             initial={{

@@ -404,7 +404,7 @@ export function ReviewsSlider() {
     <section className="py-16 bg-slate-50">
       <div className="max-w-6xl mx-auto text-center mb-10">
         <h2 className="text-3xl font-bold">
-          What Our <span className="text-blue-600">Clients Say</span>
+          <span className="text-blue-600">What Our Clients Say</span>
         </h2>
       </div>
 
