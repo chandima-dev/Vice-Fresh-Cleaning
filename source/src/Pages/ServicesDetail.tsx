@@ -13,9 +13,7 @@ import {
   ArrowLeft,
   Package,
 } from 'lucide-react'
-interface ServiceDetailProps {
-  onBack: () => void
-}
+import { useNavigate } from 'react-router-dom'
 const services = [
   {
     icon: Home,
@@ -186,7 +184,9 @@ const services = [
   //     'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
   // },
 ]
-export function ServiceDetail({ onBack }: ServiceDetailProps) {
+export function ServiceDetail() {
+  const navigate = useNavigate()
+  const onBack = () => navigate('/')
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Hero Header */}
