@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 interface Slide {
   id: number
@@ -8,10 +9,6 @@ interface Slide {
   title: string
   subtitle: string
   alt: string
-}
-
-interface HeroSliderProps {
-  onNavigate: (page: "home" | "services" | "about" | "contact") => void
 }
 
 const slides: Slide[] = [
@@ -46,7 +43,8 @@ const slides: Slide[] = [
   },
 ]
 
-export function HeroSlider({ onNavigate }: HeroSliderProps) {
+export function HeroSlider() {
+  const navigate = useNavigate()
   const [currentIndex, setCurrentIndex] = useState<number>(0)
   const [direction, setDirection] = useState<number>(0)
 
@@ -152,7 +150,7 @@ export function HeroSlider({ onNavigate }: HeroSliderProps) {
               </motion.p>
 
               <motion.button
-                onClick={() => onNavigate("contact")}
+                onClick={() => navigate("/contact")}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}

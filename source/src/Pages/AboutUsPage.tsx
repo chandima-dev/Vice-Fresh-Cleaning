@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion'
 import { Users, Leaf, ShieldCheck, ArrowLeft, CheckCircle2 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
-interface AboutUsPageProps {
-  onNavigate: (page: 'home') => void
-}
-
-export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
+export function AboutUsPage() {
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Header */}
@@ -19,7 +17,7 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
         </div>
         <div className="max-w-7xl mx-auto relative z-10">
           <button
-            onClick={() => onNavigate('home')}
+            onClick={() => navigate('/')}
             className="flex items-center gap-2 text-blue-400 hover:text-white mb-6 transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />

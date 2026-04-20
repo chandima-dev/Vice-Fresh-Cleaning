@@ -10,9 +10,7 @@ import {
   ChevronDown,
   XIcon,
 } from 'lucide-react'
-interface ContactPageProps {
-  onNavigate: (page: 'home') => void
-}
+import { useNavigate } from 'react-router-dom'
 
 const serviceOptions = [
   'Residential Cleaning',
@@ -28,7 +26,8 @@ const serviceOptions = [
   'Carpet Cleaning',
   'Move-In / Move-Out',
 ]
-export function ContactPage({ onNavigate }: ContactPageProps) {
+export function ContactPage() {
+  const navigate = useNavigate()
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -214,7 +213,7 @@ const handleSubmit = (e: React.FormEvent) => {
       <div className="bg-blue-600 text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <button
-            onClick={() => onNavigate('home')}
+            onClick={() => navigate('/')}
             className="flex items-center gap-2 text-blue-100 hover:text-white mb-6 transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />

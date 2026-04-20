@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { TopBar } from './Layout/TopBar'
 import { Navbar } from './Layout/Navbar'
 import { HeroSlider } from './Layout/HeroSlider'
@@ -11,49 +12,29 @@ import { AboutUsPage } from './Pages/AboutUsPage'
 import { ContactPage } from './Pages/ContactPage'
 import { ReviewsSlider } from './Layout/ReviewsSlider'
 
-type Page = 'home' | 'services' | 'about' | 'contact'
+function HomePage() {
+  return (
+    <>
+      <HeroSlider />
+      <Services />
+      <ReviewsSlider />
+      <WhyChooseUs />
+    </>
+  )
+}
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home')
+  const location = useLocation()
 
-  // ✅ Navigation updates state
-  const handleNavigate = (page: Page) => {
-    setCurrentPage(page)
-  }
-
-  // ✅ Scroll to top on page change (works for mobile & desktop)
   useEffect(() => {
-    // small delay ensures DOM is rendered
     setTimeout(() => {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'instant' // use 'smooth' for animated scroll
+        behavior: 'instant'
       })
     }, 0)
-  }, [currentPage])
-
-  const renderContent = () => {
-    switch (currentPage) {
-      case 'home':
-        return (
-          <>
-            <HeroSlider onNavigate={handleNavigate} />
-            <Services onViewAll={() => handleNavigate('services')} />
-            <ReviewsSlider />
-            <WhyChooseUs />
-          </>
-        )
-      case 'services':
-        return <ServiceDetail onBack={() => handleNavigate('home')} />
-      case 'about':
-        return <AboutUsPage onNavigate={handleNavigate} />
-      case 'contact':
-        return <ContactPage onNavigate={handleNavigate} />
-      default:
-        return null
-    }
-  }
+  }, [location.pathname])
 
   return (
     <div className="min-h-screen bg-white">
@@ -64,14 +45,21 @@ function App() {
 
       {/* Navbar */}
       <div className="fixed top-0 left-0 right-0 z-50">
-        <Navbar onNavigate={handleNavigate} currentPage={currentPage} />
+        <Navbar />
       </div>
 
       {/* Main Content */}
-      <main className="pt-16 md:pt-[90px]">{renderContent()}</main>
+      <main className="pt-16 md:pt-[90px]">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServiceDetail />} />
+          <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </main>
 
       {/* Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer />
 
       {/* WhatsApp Widget */}
       <WhatsAppWidget />

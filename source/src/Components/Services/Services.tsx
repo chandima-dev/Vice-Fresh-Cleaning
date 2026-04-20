@@ -8,8 +8,9 @@ import {
   ArrowRight,
   Package,
 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 interface ServicesProps {
-  onViewAll: () => void
+  onViewAll?: () => void
 }
 const services = [
   {
@@ -61,7 +62,9 @@ const services = [
       'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80',
   },
 ]
-export function Services({ onViewAll }: ServicesProps) {
+export function Services({ onViewAll }: ServicesProps = {}) {
+  const navigate = useNavigate()
+  const handleViewAll = onViewAll || (() => navigate('/services'))
   return (
     <section id="services" className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -136,8 +139,7 @@ export function Services({ onViewAll }: ServicesProps) {
                   duration: 0.3,
                 },
               }}
-              onClick={onViewAll}
-              className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group cursor-pointer flex flex-col overflow-hidden"
+              className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group flex flex-col overflow-hidden"
             >
               <div className="h-48 w-full overflow-hidden">
                 <img
@@ -169,7 +171,7 @@ export function Services({ onViewAll }: ServicesProps) {
             whileTap={{
               scale: 0.95,
             }}
-            onClick={onViewAll}
+            onClick={handleViewAll}
             className="inline-flex items-center gap-2 bg-white border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-sm hover:shadow-md"
           >
             View All Services <ArrowRight className="w-5 h-5" />

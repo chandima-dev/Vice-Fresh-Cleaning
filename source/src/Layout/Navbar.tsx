@@ -1,15 +1,28 @@
 import { useEffect, useState } from 'react'
 import { Menu, X, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-interface NavbarProps {
-  onNavigate: (page: 'home' | 'services' | 'about' | 'contact') => void
-  currentPage: 'home' | 'services' | 'about' | 'contact'
+const pageToPath: Record<string, string> = {
+  home: '/',
+  services: '/services',
+  about: '/about',
+  contact: '/contact',
 }
 
-export function Navbar({ onNavigate, currentPage }: NavbarProps) {
+const pathToPage: Record<string, string> = {
+  '/': 'home',
+  '/services': 'services',
+  '/about': 'about',
+  '/contact': 'contact',
+}
+
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const currentPage = pathToPage[location.pathname] || 'home'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,9 +36,9 @@ export function Navbar({ onNavigate, currentPage }: NavbarProps) {
   const handleNavClick = (page: 'home' | 'services' | 'about' | 'contact') => {
     if (isOpen) {
       setIsOpen(false)
-      setTimeout(() => onNavigate(page), 300)
+      setTimeout(() => navigate(pageToPath[page]), 300)
     } else {
-      onNavigate(page)
+      navigate(pageToPath[page])
     }
   }
 

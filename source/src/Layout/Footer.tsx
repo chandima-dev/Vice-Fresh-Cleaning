@@ -6,9 +6,7 @@ import {
   MessageCircle,
 } from 'lucide-react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
-interface FooterProps {
-  onNavigate?: (page: any) => void
-}
+import { useNavigate } from 'react-router-dom'
 
 // Simple X (Twitter) icon since lucide doesn't have the new X logo
 function XIcon({ className }: { className?: string }) {
@@ -19,13 +17,20 @@ function XIcon({ className }: { className?: string }) {
   )
 }
 
-export function Footer({ onNavigate }: FooterProps) {
+const pageToPath: Record<string, string> = {
+  home: '/',
+  services: '/services',
+  about: '/about',
+  contact: '/contact',
+}
+
+export function Footer() {
+  const navigate = useNavigate()
+
   const handleNav = (page: string, e: React.MouseEvent) => {
-    if (onNavigate) {
-      e.preventDefault()
-      onNavigate(page)
-      window.scrollTo(0, 0)
-    }
+    e.preventDefault()
+    navigate(pageToPath[page] || '/')
+    window.scrollTo(0, 0)
   }
 
   return (
@@ -136,12 +141,20 @@ export function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
-                <a
-                  href="tel:+61422790822"
-                  className="text-slate-400 hover:text-white transition-colors"
-                >
-                  +61 422 790 822
-                </a>
+                <div className="flex flex-col gap-1">
+                  <a
+                    href="tel:+61423557742"
+                    className="text-slate-400 hover:text-white transition-colors"
+                  >
+                    +61 423 557 742
+                  </a>
+                  <a
+                    href="tel:+61422790822"
+                    className="text-slate-400 hover:text-white transition-colors"
+                  >
+                    +61 422 790 822
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-emerald-500 shrink-0 mt-1" />
